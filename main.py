@@ -1,3 +1,7 @@
+"""
+WINDOWS VERSION
+"""
+
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLineEdit,
     QPushButton, QListWidget, QListWidgetItem, QMessageBox,
