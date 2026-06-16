@@ -18,5 +18,30 @@
 
 ### 1. Клонировать репозиторий (или скачать файлы)
 ```bash
-git clone <url-репозитория>
-cd les2
+git clone https://github.com/adamkhaydaev/mini-notebook.git
+cd mini-notebook
+```
+
+### 2. Установить зависимости
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Запустить приложение
+```bash
+python main.py
+```
+
+## 🛠️ Технологии
+
+- Python 3
+- PyQt6
+
+## 📂 Файлы данных
+
+- `tasks.txt` — автосохранение списка задач
+- `tasks.json` — экспорт/импорт задач
+
+## 👤 Автор
+
+[adamkhaydaev](https://github.com/adamkhaydaev)
