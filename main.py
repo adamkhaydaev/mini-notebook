@@ -24,7 +24,7 @@ class ToDoList(QWidget):
 
         self.input_task = QLineEdit()
         self.input_task.setPlaceholderText('Введите задачу')
-        self.input_task.returnPressed.connect(self.add_task)  # добавление по Enter
+        self.input_task.returnPressed.connect(self.add_task)
         self.layout.addWidget(self.input_task)
 
         self.add_button = QPushButton('Добавить задачу')
@@ -69,16 +69,14 @@ class ToDoList(QWidget):
 
         self.setLayout(self.layout)
 
-        # счётчик уже существует -> загрузка безопасна, и счёт сразу корректный
         self.load_tasks()
         self.update_counter()
 
-    # --- единая «фабрика» элемента: текст + чекбокс + приоритет + цвет ---
     def make_item(self, text, checked=False, priority='Обычный'):
         item = QListWidgetItem(text)
         item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
         item.setCheckState(Qt.CheckState.Checked if checked else Qt.CheckState.Unchecked)
-        item.setData(Qt.ItemDataRole.UserRole, priority)  # приоритет хранится в элементе
+        item.setData(Qt.ItemDataRole.UserRole, priority)
         if priority == 'Высокий':
             item.setForeground(Qt.GlobalColor.red)
         else:
@@ -100,7 +98,7 @@ class ToDoList(QWidget):
         item = self.make_item(task_text, False, priority)
         self.task_list.addItem(item)
         self.input_task.clear()
-        self.save_tasks()        # сохраняем сразу после добавления
+        self.save_tasks()
         self.update_counter()
 
     def save_tasks(self):
@@ -123,12 +121,10 @@ class ToDoList(QWidget):
                 line = raw.rstrip('\n')
                 if not line.strip():
                     continue
-                # rsplit('|', 2): два последних поля — приоритет и отметка,
-                # поэтому символ '|' внутри текста задачи больше не ломает разбор
                 parts = line.rsplit('|', 2)
                 if len(parts) == 3:
                     text, priority, checked = parts
-                elif len(parts) == 2:          # старый формат: text|checked
+                elif len(parts) == 2:
                     text, checked = parts
                     priority = 'Обычный'
                 else:
@@ -156,7 +152,7 @@ class ToDoList(QWidget):
         with open('tasks.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        self.task_list.clear()  # заменяем список, а не добавляем поверх (без дублей)
+        self.task_list.clear()
         for task in data:
             item = self.make_item(
                 task.get('text', ''),
