@@ -1,3 +1,7 @@
+"""
+LINUX VERSION
+"""
+
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLineEdit,
     QPushButton, QListWidget, QListWidgetItem, QMessageBox,
@@ -33,7 +37,7 @@ class ToDoList(QWidget):
 
         self.input_task = QLineEdit()
         self.input_task.setPlaceholderText('Введите задачу')
-        self.input_task.returnPressed.connect(self.add_task)  # добавление по Enter
+        self.input_task.returnPressed.connect(self.add_task)
         self.layout.addWidget(self.input_task)
 
         self.add_button = QPushButton('Добавить задачу')
