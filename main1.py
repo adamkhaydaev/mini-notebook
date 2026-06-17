@@ -12,12 +12,10 @@ import sys
 import os
 import json
 
-# Подавление сообщений Wayland и Qt
 os.environ['QT_LOGGING_RULES'] = '*.debug=false;qt.qpa.*=false'
 os.environ['QT_LOGGING_CONF'] = ''
 os.environ['QT_QPA_PLATFORM'] = 'wayland'
 
-# Перенаправление stderr в пустоту
 sys.stderr = open(os.devnull, 'w')
 
 class ToDoList(QWidget):
